@@ -1,0 +1,32 @@
+# Sentry triage log (coupleai / fono)
+
+Per-issue fields: first seen, run dates seen, root cause, fix commit, PR, status, attempts.
+Earlier entries live in open log PRs #1-#4 (FONO-D: cause unconfirmed).
+
+## 2026-11-09
+- Query: unresolved, lastSeen -24h, project fono -> 1 issue.
+- FONO-A (App Hanging >2000ms, culprit GrMtlPipelineStateBuilder::finalize): first seen 2026-10-20, 3 events / 3 users total, 1 in window (release 1.1.0+97, iPhone16,1, iOS 27.2).
+  Main thread blocked in Skia (RNSkia) Metal fragment-shader compile (FillRRectOp -> newRenderPipelineState -> MTLCompilerScheduler). No first-party frames. Status: ignored: third-party Skia/Metal shader-compile hang, low volume, cause in app code unconfirmed. Seen in runs: 2026-11-09.
+- No fix PR. Next run: escalate if FONO-A event count grows or it appears in 3+ daily runs.
+
+## 2026-11-10
+- Query: unresolved, last 24h, project fono -> 0 issues. Clean run.
+- FONO-A did not recur in window. No fix PR.
+
+## 2026-11-11
+- Query: unresolved, last 24h, project fono -> 0 issues. Clean run.
+- FONO-A did not recur. No fix PR.
+
+## 2026-11-12
+- Query: unresolved, last 24h, project fono -> 0 issues. Clean run.
+- FONO-A did not recur. No fix PR.
+
+## 2026-11-13
+- Query: unresolved, last 24h, project fono -> 1 issue.
+- FONO-A recurred: 1 new event at 2026-11-12T20:50Z (same culprit GrMtlPipelineStateBuilder::finalize, App Hanging >2000ms). Total occurrences still low (1 user in window).
+  Status: ignored: third-party Skia/Metal shader-compile hang, no first-party frames, cause in app code unconfirmed. Seen in runs: 2026-11-09, 2026-11-13 (2 of 3 for escalation).
+- No fix PR. Next run: escalate if FONO-A appears again (3rd daily run) or event count grows.
+
+## 2026-11-14
+- Query: unresolved, last 24h, project fono -> 0 issues. Clean run.
+- FONO-A did not recur. No fix PR. Seen in runs stays 2026-11-09, 2026-11-13 (2 of 3).
