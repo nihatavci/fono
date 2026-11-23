@@ -15,3 +15,9 @@ Per-issue fields: first seen, run dates seen, root cause, fix commit, PR link, s
 - Other issues: none. Fixes: none. PRs: none opened for fixes.
 - Environment notes: `gh pr list` (GraphQL) is blocked, so the REST API was used. Open sentry/ PRs are log-only PRs #1-#17. The log lives only on the unmerged log branches, so this branch is based on sentry/log-2026-11-21. `gitleaks` is not installed.
 - Next run: confirm the app source (components/zumi, hooks/useTalkSession.ts, lib/audioDiag.ts) is synced into this repo. Check whether FONO-E recurs (day 2 of seen) and whether FONO-6 recurs on builds after 117.
+
+## 2026-11-23
+- Sentry coupleai/fono, last 24h: 0 unresolved issues.
+- FONO-E and FONO-6 (from 2026-11-22) did not recur in the window; both remain "cause unconfirmed" (source files absent from this repo). Fixes: none.
+- Environment notes: `gh pr list` GraphQL blocked (403); REST used for PRs.
+- Next run: confirm app source is synced into this repo; watch FONO-E / FONO-6 recurrence.
