@@ -21,3 +21,11 @@ Per-issue fields: first seen, run dates seen, root cause, fix commit, PR link, s
 - FONO-E and FONO-6 (from 2026-11-22) did not recur in the window; both remain "cause unconfirmed" (source files absent from this repo). Fixes: none.
 - Environment notes: `gh pr list` GraphQL blocked (403); REST used for PRs.
 - Next run: confirm app source is synced into this repo; watch FONO-E / FONO-6 recurrence.
+
+## 2026-11-24
+- Sentry coupleai/fono, last 24h: 2 unresolved issues, 1 event each.
+- **FONO-E** (new, last seen 2026-11-23 08:14Z): `TypeError: undefined is not a function` in `setNum` (components/zumi/ZumiRive). Recurred after the 11-22 log. Status: **escalate, cause unconfirmed**. Source file absent from this repo. Attempts: 0.
+- **FONO-6** (regressed, last seen 2026-11-23 18:11Z): handled diagnostic `audio_start_narrowband` from `lib/audioDiag.ts`. Seen in 3 daily runs (11-22, 11-23 events, 11-24). Status: **escalate, cause unconfirmed**. Source absent from this repo. Attempts: 0.
+- Fixes: none. PRs: log-only.
+- Env notes: `gh pr list` GraphQL blocked; gitleaks not installed.
+- Next run: confirm app source (components/zumi, hooks/useTalkSession.ts, lib/audioDiag.ts) is synced into the repo, then investigate both.
