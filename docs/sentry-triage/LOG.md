@@ -25,3 +25,12 @@ Open sentry/ PRs: `gh pr list` blocked (GraphQL); checked via origin branches on
 - Status: pr-open (attempts: 1). Next run: check FONO-G count drops after build 124+ ships.
 
 ### FONO-6 — carried over, not re-listed in 24h window today. Status unchanged: new, cause unconfirmed (talk-loop code absent from main).
+
+## 2026-11-27
+
+Open sentry/ PRs: #22 (FONO-G, pr-open, draft). Others are log-only PRs.
+
+- Sentry coupleai/fono: 0 unresolved issues in the last 24h. Clean run, no fixes.
+- FONO-G: pr-open, did not recur in window (fix not yet shipped; verify count drops after build 124+ ships).
+- FONO-6: not in 24h window; status unchanged (new, cause unconfirmed, talk-loop code absent from main).
+- gitleaks not installed; diff is a markdown log only.
