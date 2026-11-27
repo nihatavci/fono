@@ -55,21 +55,35 @@ export const mmkvStorageAdapter = storage
 
 const _memPrefs = new Map<string, string | boolean>();
 
+// Native MMKV writes can throw (e.g. "Failed to set <key>!" when the device is
+// out of storage). Prefs are non-critical, so degrade to the in-memory map
+// instead of letting the exception reach callers (FONO-G).
+const _safeSet = (key: string, value: string | boolean): void => {
+  if (prefsStorage) {
+    try {
+      prefsStorage.set(key, value);
+      _memPrefs.delete(key);
+      return;
+    } catch {
+      // fall through to in-memory
+    }
+  }
+  _memPrefs.set(key, value);
+};
+
 export const Prefs = {
   get: (key: string, fallback?: string): string | undefined =>
     (prefsStorage?.getString(key) ?? (_memPrefs.get(key) as string | undefined)) ?? fallback,
 
   set: (key: string, value: string): void => {
-    if (prefsStorage) prefsStorage.set(key, value);
-    else _memPrefs.set(key, value);
+    _safeSet(key, value);
   },
 
   getBool: (key: string, fallback = false): boolean =>
     (prefsStorage?.getBoolean(key) ?? (_memPrefs.get(key) as boolean | undefined)) ?? fallback,
 
   setBool: (key: string, value: boolean): void => {
-    if (prefsStorage) prefsStorage.set(key, value);
-    else _memPrefs.set(key, value);
+    _safeSet(key, value);
   },
 
   getInt: (key: string, fallback = 0): number => {
@@ -81,8 +95,7 @@ export const Prefs = {
 
   setInt: (key: string, value: number): void => {
     const encoded = String(value);
-    if (prefsStorage) prefsStorage.set(key, encoded);
-    else _memPrefs.set(key, encoded);
+    _safeSet(key, encoded);
   },
 
   remove: (key: string): void => {
